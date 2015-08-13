@@ -1,5 +1,6 @@
 package obj 
 {
+	import org.flixel.FlxRect;
 	import org.flixel.plugin.photonstorm.FlxWeapon;
 	
 	/**
@@ -14,10 +15,11 @@ package obj
 			super("pixelWeapon");
 			
 			makePixelBullet(50);
-			setFiringPosition//	This weapon will fire from a fixed (stationary) position
+			//setFiringPosition//	This weapon will fire from a fixed (stationary) position
 			setParent(_parent, "x", "y");
-			setFireRate(100);
-			setBulletSpeed(300);
+			setFireRate(300);
+			setBulletSpeed(250);
+			setBulletBounds(new FlxRect(0,0,640,480));
 		}
 		
 	}

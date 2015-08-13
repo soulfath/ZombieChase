@@ -1,8 +1,10 @@
 package obj 
 {
+	import data.Registry;
 	import flash.utils.getTimer;
 	import org.flixel.FlxGroup;
 	import org.flixel.FlxObject;
+	import org.flixel.FlxSprite;
 	
 	/**
 	 * ...
@@ -12,12 +14,15 @@ package obj
 	{
 		
 		private var lastReleased:int;
-		private var releaseRate:int = 500;
+		private var releaseRate:int = 1000;
+		private var _target:FlxSprite;
+		
 		public function Enemies(MaxSize:uint=0) 
 		{
 			super(MaxSize);
-			for (var i:int = 0; i < 100; i++)
+			for (var i:int = 0; i < 20; i++){
 				add(new Enemy);
+			}
 	
 		}
 		
@@ -27,17 +32,20 @@ package obj
 			
 			if (enemy) {
 				enemy.launch();
+				enemy.exists = true;
+				enemy.alive = true;
 			}
 		}
 		
 		override public function update():void
 		{
 			super.update();
-			
-			if (getTimer() > lastReleased + releaseRate)
-			{
-				lastReleased = getTimer();
-				release();
+			if ( !Registry.isPaused ){
+				if (getTimer() > lastReleased + releaseRate)
+				{
+					lastReleased = getTimer();
+					release();
+				}
 			}
 		}
 		
@@ -46,6 +54,16 @@ package obj
 			_enemy.kill();
 			_bullet.kill();
 			
+		}
+		
+		public function get target():FlxSprite 
+		{
+			return _target;
+		}
+		
+		public function set target(value:FlxSprite):void 
+		{
+			_target = value;
 		}
 	}
 
