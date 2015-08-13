@@ -87,6 +87,7 @@ package state
 			Registry.init();
 			hud = new FlxGroup();
 			score = 0;
+			resumeTime = 3;
 			
 			/*OPTION*/
 			optionScreen = new FlxGroupXY();
@@ -134,14 +135,14 @@ package state
 			scoreText.setFormat(null, 10, 0xFFFFFFF, "center");
 			
 			/*Countdown*/
-			cdText = new FlxText(160, 120, 30, "");
+			cdText = new FlxText(150, 75, 30, "");
+			cdText.setFormat(null, 24, 0xFFFFFFFFF, "center");
 			
 			add(optionScreen);
 			add(howtoplayScreen);
 			hud.add(healthBar);
 			hud.add(bar1);
 			hud.add(scoreText);
-			add(cdText);
 			add(hud);
 			
 			hud.setAll("scrollFactor", new FlxPoint(0, 0));
@@ -149,6 +150,7 @@ package state
 			add(Registry.PLAYER);
 			add(Registry.WEAPON.group);
 			add(Registry.ENEMIES);
+			add(cdText);
 			
 			init();
 		}
@@ -179,15 +181,15 @@ package state
 			}
 			else {
 				if ( countdown ) {
-					trace("CD");
 					if (getTimer() > lastResume + resumeCountdownRate)
 					{
-					trace("2CD");
 						lastResume = getTimer();
-					//	cdText.text = resumeTime.toString();
+						cdText.text = resumeTime.toString();
 						resumeTime--;
+						trace("resume time" + resumeTime);
 						if ( resumeTime == 0 ){
 							Registry.isPaused = false;
+							cdText.text = "";
 						}
 					}
 				}
