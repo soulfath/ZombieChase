@@ -101,11 +101,10 @@ package state
 			
 			/*HOWTOPLAY*/
 			howtoplayScreen = new FlxGroupXY();
-			howtoplayBg = new FlxSprite(50, 50, Registry.zeldaLifePanelPNG);
-			howtoplayBackBtnSprite = new FlxSprite(50,50,Registry.healthBarPNG);
-			howtoplayBackBtn =  new FlxButton(270, 150, "", ConfirmHowToPlay);
+			howtoplayBg = new FlxSprite(50, 50);
+			howtoplayBg.makeGraphic(220, 150);
+			howtoplayBackBtn =  new FlxButton(160, 150, "Tekan ini Al", ConfirmHowToPlay);
 			howtoplayScreen.add(howtoplayBg);
-			howtoplayScreen.add(howtoplayBackBtnSprite);
 			howtoplayScreen.add(howtoplayBackBtn);
 			//howtoplayBackBtn.loadGraphic(Registry.zeldaLifeHeartsPNG);
 			
